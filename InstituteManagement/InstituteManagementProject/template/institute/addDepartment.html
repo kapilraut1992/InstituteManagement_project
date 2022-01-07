@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+{%  block title  %}
+    <title>Dept add</title>
+{% endblock %}
+
+{% block content  %}
+<h1 style="text-align:center;"><b>Department Adding Form</b></h1>
+<div class="container">
+    <form method="POST" class="jumbotron" style="text-align:center;background-color:powderblue;margin:auto;width:50%">
+    {% csrf_token %}
+
+    {{form|crispy}}
+        <br>
+        <button type="submit" class="btn btn-success">Add department</button>
+
+</form>
+</div>
+
+{% endblock %}

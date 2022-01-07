@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+{%  block title  %}
+    <title>Title</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <div>
+        <table border="2px" class="jumbotron">
+            <h2>All Student Data</h2>
+    <tr>
+        <th>student Id</th>
+        <th>Name</th>
+        <th>Roll No</th>
+        <th>Marks</th>
+        <th>Department</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    {% for stud in student_obj %}
+    <tr>
+        <td>{{stud.id}}</td>
+        <td>{{stud.stud_name}}</td>
+        <td>{{stud.stud_roll}}</td>
+        <td>{{stud.stud_marks}}</td>
+        <td>{{stud.dept}}</td>
+        <td><a href="{% url 'update_stud' stud.id %}"><button class="btn btn-warning">Update</button></a></td>
+        <td><a href="{% url 'delete' stud.id %}"><button class="btn btn-danger">Delete</button></a></td>
+    </tr>
+    {% endfor %}
+</table>
+    </div>
+    <br>
+<button class="btn btn-success" style="text-align:left"><a href="{% url 'add_student' %}" style="color:black">Add Student</a></button>
+
+
+</div>
+{% endblock %}

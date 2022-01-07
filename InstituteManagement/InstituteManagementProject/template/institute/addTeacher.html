@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+{%  block title  %}
+    <title>Teach add</title>
+{% endblock %}
+
+{% block content %}
+<h1 style="text-align:center">Professor Adding Form</h1>
+<div class="container">
+
+
+
+    <form method="POST" class="jumbotron" style="text-align:center;width:50%;margin:auto;background-color:palegreen">
+    {% csrf_token %}
+
+    {{form|crispy}}
+        <br>
+<button type="submit" class="btn btn-success">Add Teacher</button>
+</form>
+
+</div>
+
+{% endblock %}

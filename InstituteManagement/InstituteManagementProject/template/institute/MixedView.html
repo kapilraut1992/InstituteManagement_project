@@ -1,0 +1,106 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+{%  block title  %}
+    <title>Title</title>
+{% endblock %}
+
+{% block search %}
+<ul>
+    <form method="POST" class="form-inline my-2 my-lg-0">
+        {% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" name="searchdata" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
+</ul>
+
+{% endblock %}
+
+
+{% block content %}
+
+    <!--<div class="jumbotron">-->
+    <div class="container" style="width:70%;height:30%;">
+
+<h1><u>Department List<u></u></h1>
+<table class="table table-borderless table-light">
+    <tr>
+        <th> Id</th>
+        <th>Department Name</th>
+        <th>Professor Name</th>
+    </tr>
+    {% for dept in department %}
+    <tr>
+        <td>{{dept.id}}</td>
+        <td>{{dept.dept_name}}</td>
+        <td>{% for p in professor %}
+            {{p.teacher_name}}
+            <br>
+            {% endfor %}
+        </td>
+
+
+
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<br>
+
+
+<h2><u>Professor List</u></h2>
+<table class="table table-borderless table-light" >
+    <tr>
+        <th> Id</th>
+        <th>Name</th>
+        <th>Department</th>
+    </tr>
+    {% for teach in professor %}
+    <tr>
+        <td>{{teach.id}}</td>
+        <td>{{teach.teacher_name}}</td>
+        <td>{% for d in teach.dept.all %}
+            {{d.dept_name}}
+            <br>
+            {% endfor %}
+        </td>
+
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+<br>
+
+
+<h1><u>Student Details Table</u></h1>
+<table class="table table-borderless table-light">
+      <tr>
+        <th>student Id</th>
+        <th>Name</th>
+        <th>Roll No</th>
+        <th>Marks</th>
+        <th>Department</th>
+    </tr>
+    {% for stud in student %}
+    <tr>
+        <td>{{stud.id}}</td>
+        <td>{{stud.stud_name}}</td>
+        <td>{{stud.stud_roll}}</td>
+        <td>{{stud.stud_marks}}</td>
+        <td>{{stud.dept}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+<br>
+
+
+
+
+</div>
+
+
+{% endblock %}
+

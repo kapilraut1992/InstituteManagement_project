@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+{%  block title  %}
+    <title>professor list</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Professor List</h2>
+    <table border="2px">
+    <tr>
+        <th> Id</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    {% for teach in teach %}
+    <tr>
+        <td>{{teach.id}}</td>
+        <td>{{teach.teacher_name}}</td>
+        <td>{% for d in teach.dept.all %}
+            {{d.dept_name}}
+        <br>
+            {% endfor %}
+        </td>
+
+        <td><a href="{% url 'update_teach' teach.id %}"><button class="btn btn-warning">Update</button></a></td>
+        <td><a href="{% url 'delete' teach.id %}"><button class="btn btn-danger">Delete</button></a></td>
+
+    </tr>
+    {% endfor %}
+</table>
+    <br>
+    <a href="{% url 'add_teacher' %}"><button class="btn btn-success" style="text-align:left">Add Teacher</button></a>
+
+</div>
+{% endblock %}
